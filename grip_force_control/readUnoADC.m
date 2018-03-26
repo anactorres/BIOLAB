@@ -2,7 +2,7 @@
 % FEDERAL UNIVERSITY OF UBERLANDIA - UFU
 % FACULTY OF ELECTRICAL ENGINEERING - FEELT
 % BIOMEDICAL ENGINEERING LAB - BIOLAB
-% Uberl‚ndia, Brazil
+% Uberl√¢ndia, Brazil
 %--------------------------------------------------------------------------
 % Author: Andrei Nakagawa-Silva
 % Contact: nakagawa.andrei@gmail.com
@@ -13,6 +13,7 @@
 %--------------------------------------------------------------------------
 %Parameters
 %Serial
+% Remember to change name of serial port:
 portName = 'COM10'; %serial port
 baudRate = 38400; %baudrate
 %Serial package
@@ -22,7 +23,7 @@ PKG_DATA_SIZE = 2; %number of bytes that are actual data
 %Acquisition
 sampfreq = 100; %sampling frequency in Hz, according to unoADC
 dt = 1.0/sampfreq; %sampling period (s)
-maxTime = 10; %duration in s
+maxTime = 30; %duration in s
 maxSamples = sampfreq * maxTime; %number of samples to be read
 counter = 1; %counts the number of samples read from the Arduino board
 %time vector
@@ -50,6 +51,8 @@ while(counter <= maxSamples)
             dataLSB = data(2);
             %the ADC value is given by: (dataMSB<<8) | dataLSB (C/C++/C#)            
             dataArray(counter) = bitor(dataMSB,dataLSB); 
+            addpoints(h,time(counter),dataArray(counter));
+            drawnow;
             %increments the sample counter
             counter = counter+1;
         end
