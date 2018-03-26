@@ -13,7 +13,7 @@
 %--------------------------------------------------------------------------
 %Parameters
 %Serial
-% Remember to change name of serial port:
+% Remember to change the name of serial port:
 portName = 'COM10'; %serial port
 baudRate = 38400; %baudrate
 %Serial package
